@@ -1,3 +1,13 @@
 node_modules
 .env
 dist
+/generated/prisma
+package-lock.json
+yarn.lock
+.DS_Store
+.idea
+.vscode
+*.log
+*.tsbuildinfo
+coverage
+*.tgz

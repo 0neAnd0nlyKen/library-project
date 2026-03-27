@@ -1,11 +1,13 @@
 import express from 'express'
 // import { books } from './data.js'
 import prisma from './database.js' // Import Prisma Client dari file database.js
+import usersRouter from './routes/users.js'
 
 const app = express()
 const port = 3000
 
 app.use(express.json())
+app.use('/users', usersRouter)
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })

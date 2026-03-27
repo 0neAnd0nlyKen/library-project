@@ -14,8 +14,8 @@ app.get('/', (req, res) => {
 app.get('/books', async (req, res) => {
   // Mengambil semua buku dari database menggunakan Prisma Client
   const books = await prisma.books.findMany()
-  
-  res.send(books)
+  //json response
+  res.json(books)
 })
 
 
@@ -51,6 +51,8 @@ app.post('/books', async (req, res) => {
       year
     }
   })
+
+
 
   res.send('Book created successfully')
 })

@@ -33,11 +33,15 @@ export const createUser = async (req, res) => {
   try {
     const { name, email, password, role } = req.body
 
+    const bcrypt = await import('bcrypt')
+    const saltRounds = 10
+    const hashedPassword = await bcrypt.hash(password, saltRounds)
+    console.log('Hashed Password:', hashedPassword)
     const user = await prisma.users.create({
       data: {
         name,
         email,
-        password,
+        password: hashedPassword,
         role: role || 'USER'
       }
     })

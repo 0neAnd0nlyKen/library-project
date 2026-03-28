@@ -3,7 +3,7 @@ import prisma from '../database.js'
 
 const router = express.Router()
 
-router.get('/books', async (req, res) => {
+router.get('', async (req, res) => {
   // Mengambil semua buku dari database menggunakan Prisma Client
   const books = await prisma.books.findMany()
   //json response
@@ -11,7 +11,7 @@ router.get('/books', async (req, res) => {
 })
 
 
-router.get('/books/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   // Mendapatkan ID buku yang akan diupdate dari parameter URL
   // Lalu mengubahnya menjadi tipe data integer menggunakan parseInt
   const id = parseInt(req.params.id)
@@ -31,7 +31,7 @@ router.get('/books/:id', async (req, res) => {
   res.send(book)
 })
 
-router.post('/books', async (req, res) => {
+router.post('', async (req, res) => {
   // Mendapatkan data buku baru dari request body
   const { title, author, year } = req.body
 
@@ -49,7 +49,7 @@ router.post('/books', async (req, res) => {
   res.send('Book created successfully')
 })
 // PUT
-router.put('/books/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   // Mendapatkan ID buku yang akan diupdate dari parameter URL
   // Lalu mengubahnya menjadi tipe data integer menggunakan parseInt
   const id = parseInt(req.params.id)
@@ -85,7 +85,7 @@ router.put('/books/:id', async (req, res) => {
   res.send(`Book with ID: ${id} updated successfully`)
 })
 // DELETE
-router.delete('/books/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   // Mendapatkan ID buku yang akan diupdate dari parameter URL
   // Lalu mengubahnya menjadi tipe data integer menggunakan parseInt
   const id = parseInt(req.params.id)

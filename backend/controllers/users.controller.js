@@ -1,4 +1,4 @@
-import prisma from "../database.js";
+import prisma from "../configs/database.config.js";
 
 export const getUsers = async (req, res) => {
   try {

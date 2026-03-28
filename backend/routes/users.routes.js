@@ -1,5 +1,5 @@
 import express from 'express'
-import prisma from '../database.js'
+import prisma from '../configs/database.config.js'
 
 const router = express.Router()
 

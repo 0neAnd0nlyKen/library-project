@@ -1,6 +1,6 @@
 // books.controller.js
 
-import prisma from '../database.js' // jangan lupa import prisma
+import prisma from '../configs/database.config.js' // jangan lupa import prisma
 
 export const getBooks = async (req, res) => {
   // Mengambil semua buku dari database menggunakan Prisma Client

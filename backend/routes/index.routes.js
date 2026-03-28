@@ -1,5 +1,4 @@
 import express from 'express'
-import prisma from '../database.js'
 import booksRoute from './books.routes.js'
 import usersRoute from './users.routes.js'
 

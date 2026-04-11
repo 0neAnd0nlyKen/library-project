@@ -110,3 +110,35 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 }
+
+export const getUserByIdWithProfile = async (req, res) => {
+  // Mendapatkan ID pengguna yang akan diupdate dari parameter URL
+  // Lalu mengubahnya menjadi tipe data integer menggunakan parseInt
+  const id = parseInt(req.params.id)
+
+  // Mengambil pengguna dengan ID yang sesuai dari database menggunakan Prisma Client
+  const user = await prisma.users.findUnique({
+    where: {
+      id: id,
+    },
+
+    include: {
+      profile: true,
+    }
+  })
+
+  // Jika pengguna tidak ditemukan, kirimkan pesan error
+  if (!user) {
+    res.json({
+      success: false,
+      message: `User with ID: ${id} not found`,
+    })
+    return
+  }
+
+  res.json({
+    success: true,
+    message: 'User retrieved successfully',
+    data: user,
+  })
+}

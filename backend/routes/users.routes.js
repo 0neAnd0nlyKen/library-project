@@ -4,6 +4,7 @@ import prisma from '../configs/database.config.js'
 import {
 getUsers,
 getUserById,
+getUserByIdWithProfile,
 createUser,
 updateUser,
 deleteUser
@@ -13,6 +14,7 @@ const router = express.Router()
 
 router.get('/', getUsers)
 router.get('/:id', getUserById)
+router.get('/:id/profile', getUserByIdWithProfile) // buat route-nya
 router.post('/', createUser)
 router.put('/:id', updateUser)
 router.delete('/:id', deleteUser)

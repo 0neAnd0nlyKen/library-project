@@ -38,6 +38,36 @@ export const getCategoryById = async (req, res) => {
   }
 }
 
+export const getAllBooksByCategoryId = async (req, res) => {
+  // Mendapatkan ID kategori yang akan diupdate dari parameter URL
+  // Lalu mengubahnya menjadi tipe data integer menggunakan parseInt
+    const id = parseInt(req.params.id)
+
+  // Mengambil kategori dengan ID yang sesuai dari database menggunakan Prisma Client
+    const category = await prisma.categories.findUnique({
+        where: {
+            id: id,
+        },
+            include: {
+            books: true,
+        },
+    })
+
+  // Jika kategori tidak ditemukan, kirimkan pesan error
+    if (!category) {
+        return res.json({
+        success: false,
+        message: `Category with ID: ${id} not found`,
+        })
+    }
+
+    res.json({
+        success: true,
+        message: 'Category retrieved successfully',
+        data: category,
+    })
+}
+
 export const createCategory = async (req, res) => {
   try {
     const { name } = req.body
@@ -109,3 +139,4 @@ export const deleteCategory = async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 }
+

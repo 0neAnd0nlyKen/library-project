@@ -19,6 +19,8 @@ model Users {
   password  String   @db.VarChar(255)
   role      String   @default("USER")
   createdAt DateTime @default(now())
+
+  profile Profiles?
 }
 
 model Books {
@@ -28,4 +30,14 @@ model Books {
   year      Int
   available Boolean  @default(true)
   createdAt DateTime @default(now())
+}
+
+model Profiles {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  address   String?
+  phone     String?
+  createdAt DateTime @default(now())
+  
+  user Users @relation(fields: [userId], references: [id])
 }

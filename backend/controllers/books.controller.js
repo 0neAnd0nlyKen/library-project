@@ -1,7 +1,7 @@
 // books.controller.js
 
 import prisma from '../configs/database.config.js' // jangan lupa import prisma
-import { isCategoryExist } from './categories.controllers.js'
+import { isCategoryExist } from './categories.controller.js'
 
 export const getBooks = async (req, res) => {
   // Mengambil semua buku dari database menggunakan Prisma Client

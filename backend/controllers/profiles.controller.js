@@ -1,6 +1,7 @@
 // profiles.controller.js
 
 import prisma from '../configs/database.config.js'
+import { isUserExist } from './users.controller.js'
 
 export const getAllProfiles = async (req, res) => {
   try {
@@ -42,6 +43,16 @@ export const createProfile = async (req, res) => {
   try {
     const { userId, address, phone } = req.body
 
+    const userExists = await isUserExist(userId)
+
+    if (!userExists) {
+      return res.json({
+        success: false, 
+        message: `User with ID: ${userId} not found`,
+      })
+    }
+
+
     const profile = await prisma.profiles.create({
       data: {
         userId,
@@ -63,6 +74,16 @@ export const updateProfile = async (req, res) => {
   try {
     const id = parseInt(req.params.id)
     const { address, phone } = req.body
+
+    const userExists = await isUserExist(userId)
+
+    if (!userExists) {
+      return res.json({
+        success: false, 
+        message: `User with ID: ${userId} not found`,
+      })
+    }
+
 
     const profile = await prisma.profiles.update({
       where: {

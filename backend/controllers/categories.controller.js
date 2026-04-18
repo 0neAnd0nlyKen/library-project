@@ -38,6 +38,17 @@ export const getCategoryById = async (req, res) => {
   }
 }
 
+export const isCategoryExist = async (id) => {
+  // Mencari kategori dengan ID yang sesuai di database menggunakan Prisma Client
+  const category = await prisma.categories.findUnique({
+    where: {
+      id: id,
+    },
+  })
+
+  return !!category
+}
+
 export const getAllBooksByCategoryId = async (req, res) => {
   // Mendapatkan ID kategori yang akan diupdate dari parameter URL
   // Lalu mengubahnya menjadi tipe data integer menggunakan parseInt

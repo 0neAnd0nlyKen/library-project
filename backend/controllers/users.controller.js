@@ -29,6 +29,18 @@ export const getUserById = async (req, res) => {
   }
 }
 
+export const isUserExist = async (id) => {
+  // Mencari kategori dengan ID yang sesuai di database menggunakan Prisma Client
+  const user = await prisma.users.findUnique({
+    where: {
+      id: id,
+    },
+  })
+
+  return !!user
+}
+
+
 export const createUser = async (req, res) => {
   try {
     const { name, email, password, role } = req.body
